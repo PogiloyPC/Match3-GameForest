@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv5psmbk5bm3i"]
+
+[ext_resource type="Script" path="res://Scripts/Element/Element.cs" id="2_24qor"]
+[ext_resource type="Texture2D" uid="uid://dt11i6h8x2w5d" path="res://Sprites/GameBoardContent/money48X48.png" id="2_miat6"]
+
+[node name="Money" type="Node2D"]
+z_index = 1
+script = ExtResource("2_24qor")
+_typeContent = 5
+_color = Color(0.878431, 0.847059, 0.192157, 1)
+_speed = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_miat6")

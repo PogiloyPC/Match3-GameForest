@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cas7m3tsv4v02"]
+
+[ext_resource type="Script" path="res://Scripts/Element/BonusElement/BonusElement.cs" id="1_sl608"]
+[ext_resource type="Texture2D" uid="uid://dqrmiuow58eyj" path="res://Sprites/GameBoardContent/BombBonus48X48.png" id="2_r65cq"]
+
+[node name="BombBonusElement" type="Node2D"]
+script = ExtResource("1_sl608")
+_typeBonus = 2
+_typeContent = 7
+_speed = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_r65cq")

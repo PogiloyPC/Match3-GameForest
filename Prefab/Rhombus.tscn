@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjgvjlcrpetwm"]
+
+[ext_resource type="Script" path="res://Scripts/Element/Element.cs" id="1_ndvcm"]
+[ext_resource type="Texture2D" uid="uid://kerc57w32f14" path="res://Sprites/GameBoardContent/Rhombus48X48.png" id="2_7npyl"]
+
+[node name="Rhombus" type="Node2D"]
+z_index = 1
+script = ExtResource("1_ndvcm")
+_typeContent = 3
+_color = Color(0.560784, 0.121569, 0.733333, 1)
+_speed = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_7npyl")

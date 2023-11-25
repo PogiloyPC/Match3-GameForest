@@ -1,0 +1,239 @@
+[gd_scene load_steps=16 format=3 uid="uid://c0o3030rnxaun"]
+
+[ext_resource type="Texture2D" uid="uid://bggeffidyx56i" path="res://Sprites/UI/Frame.png" id="1_kmlac"]
+[ext_resource type="Script" path="res://Scripts/UIController/UIController.cs" id="1_w7ea8"]
+[ext_resource type="Texture2D" uid="uid://degi4o6qlep5q" path="res://Sprites/UI/WindowTextUI.png" id="2_3x5cg"]
+[ext_resource type="FontFile" uid="uid://c8ga5ctcgcqs7" path="res://Fonts/m5x7.ttf" id="3_f15uh"]
+[ext_resource type="Script" path="res://Scripts/UI/ViewGameTime/ViewGameTime.cs" id="4_qrae3"]
+[ext_resource type="Script" path="res://Scripts/UI/ViewTotalScore/ViewTotalScore.cs" id="5_ctq03"]
+[ext_resource type="Theme" uid="uid://igkeanphxhw4" path="res://PanelStyle.tres" id="5_frtpc"]
+[ext_resource type="Script" path="res://Scripts/UI/PanelGameOver/PanelGameOver.cs" id="6_uect2"]
+[ext_resource type="Texture2D" uid="uid://d4ijv481lbxiy" path="res://Sprites/UI/Button/button_main_menu.png" id="7_0at0j"]
+[ext_resource type="Texture2D" uid="uid://c754hg824qa6v" path="res://Sprites/UI/Button/pressedStartFameButon-0009.png" id="8_1aovj"]
+[ext_resource type="Script" path="res://Scripts/UI/FinishGameButton/FinishGameButton.cs" id="9_c1xvy"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w4pg0"]
+texture = ExtResource("1_kmlac")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ppflv"]
+texture = ExtResource("2_3x5cg")
+
+[sub_resource type="FontVariation" id="FontVariation_gfs86"]
+base_font = ExtResource("3_f15uh")
+
+[sub_resource type="FontVariation" id="FontVariation_s6y1h"]
+base_font = ExtResource("3_f15uh")
+
+[node name="UIGameScene" type="Control" node_paths=PackedStringArray("_gameTimer", "_viewTotalScore", "_panelGameOver")]
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w7ea8")
+_gameTimer = NodePath("MainPanel/WindowTimer/Timer")
+_viewTotalScore = NodePath("MainPanel/WindowScore/Score")
+_panelGameOver = NodePath("PanelGameOver")
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.003
+anchor_bottom = 0.042
+offset_right = -1.44
+offset_bottom = 37.32
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_w4pg0")
+
+[node name="WindowTimer" type="Panel" parent="MainPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.434
+anchor_top = 0.113
+anchor_right = 0.566
+anchor_bottom = 0.887
+offset_left = 150.114
+offset_top = 0.22
+offset_right = 186.886
+offset_bottom = -1.22
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ppflv")
+
+[node name="Timer" type="Label" parent="MainPanel/WindowTimer"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -17.5
+offset_right = 49.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(63, 17)
+theme_override_fonts/font = SubResource("FontVariation_gfs86")
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_qrae3")
+
+[node name="WindowScore" type="Panel" parent="MainPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.434
+anchor_top = 0.113
+anchor_right = 0.566
+anchor_bottom = 0.887
+offset_left = -91.886
+offset_top = -0.78
+offset_right = -55.114
+offset_bottom = -2.22
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ppflv")
+
+[node name="Score" type="Label" parent="MainPanel/WindowScore"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -17.5
+offset_right = 49.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(63, 17)
+theme_override_fonts/font = SubResource("FontVariation_gfs86")
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_ctq03")
+
+[node name="Time" type="Label" parent="MainPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 32.5
+offset_top = -23.0
+offset_right = 131.5
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(63, 17)
+theme_override_fonts/font = SubResource("FontVariation_gfs86")
+theme_override_font_sizes/font_size = 40
+text = "Time:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalScore" type="Label" parent="MainPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.5
+offset_top = -25.0
+offset_right = -114.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(63, 17)
+theme_override_fonts/font = SubResource("FontVariation_gfs86")
+theme_override_font_sizes/font_size = 40
+text = "Score:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelGameOver" type="Panel" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -125.0
+offset_right = 150.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_frtpc")
+script = ExtResource("6_uect2")
+
+[node name="GameOverText" type="Label" parent="PanelGameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.0
+offset_top = -93.0
+offset_right = 103.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_s6y1h")
+theme_override_font_sizes/font_size = 60
+text = "Game Over"
+
+[node name="FinishGameMenu" type="TextureButton" parent="PanelGameOver"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = 36.0
+offset_right = 14.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(14, 7)
+texture_normal = ExtResource("7_0at0j")
+texture_pressed = ExtResource("8_1aovj")
+script = ExtResource("9_c1xvy")
+
+[node name="Text" type="Label" parent="PanelGameOver/FinishGameMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -10.5
+offset_right = 9.0
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_s6y1h")
+theme_override_font_sizes/font_size = 20
+text = "OK!"
+horizontal_alignment = 1
+vertical_alignment = 1

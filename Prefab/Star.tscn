@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://2of8rugw3u"]
+
+[ext_resource type="Script" path="res://Scripts/Element/Element.cs" id="1_xa0j6"]
+[ext_resource type="Texture2D" uid="uid://coannblqt0mwv" path="res://Sprites/GameBoardContent/Star48X48.png" id="2_rmu2l"]
+
+[node name="Star" type="Node2D"]
+z_index = 1
+position = Vector2(1, 0)
+script = ExtResource("1_xa0j6")
+_typeContent = 2
+_color = Color(0.388235, 0.607843, 1, 1)
+_speed = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_rmu2l")

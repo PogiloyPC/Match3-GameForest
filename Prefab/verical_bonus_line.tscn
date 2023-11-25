@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdmqtc5xonoel"]
+
+[ext_resource type="Texture2D" uid="uid://ddrb2e4o8tw2d" path="res://Sprites/GameBoardContent/LineBonus.png" id="1_28045"]
+[ext_resource type="Script" path="res://Scripts/Element/BonusElement/BonusElement.cs" id="1_d88av"]
+
+[node name="vericalBonusLine" type="Node2D"]
+script = ExtResource("1_d88av")
+_typeBonus = 1
+_speed = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_28045")

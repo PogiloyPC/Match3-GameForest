@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://gwi3e6rvc8wf"]
+
+[ext_resource type="Script" path="res://Scripts/Element/Element.cs" id="1_lwkp3"]
+[ext_resource type="Texture2D" uid="uid://cv7ecamsyirum" path="res://Sprites/GameBoardContent/rectanle48X48.png" id="2_r38vt"]
+
+[node name="Rectangle" type="Node2D"]
+z_index = 1
+script = ExtResource("1_lwkp3")
+_typeContent = 1
+_color = Color(0.67451, 0.243137, 0.196078, 1)
+_speed = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_r38vt")

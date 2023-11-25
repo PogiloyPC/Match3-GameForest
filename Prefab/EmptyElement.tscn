@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b57vx2iauxk"]
+
+[ext_resource type="Script" path="res://Scripts/Element/Element.cs" id="1_pi6ua"]
+[ext_resource type="Texture2D" uid="uid://d2abqjanx8qka" path="res://Sprites/GameBoardContent/EmtyElement.png" id="2_wm3dp"]
+
+[node name="EmptyElement" type="Node2D"]
+z_index = 1
+position = Vector2(1, 0)
+script = ExtResource("1_pi6ua")
+_speed = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("2_wm3dp")
+script = ExtResource("1_pi6ua")
+_speed = 0.1

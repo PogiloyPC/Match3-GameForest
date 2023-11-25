@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg8xqorm6ukhi"]
+
+[ext_resource type="Material" uid="uid://bt7w1gc7kxded" path="res://Prefab/ParticlePrefab/ParticleSpread.tres" id="1_jlhxj"]
+[ext_resource type="Script" path="res://Scripts/Particle/ExplosionParticles.cs" id="2_b03jd"]
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+z_index = 2
+amount = 50
+process_material = ExtResource("1_jlhxj")
+explosiveness = 1.0
+script = ExtResource("2_b03jd")

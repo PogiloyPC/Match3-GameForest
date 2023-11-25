@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "yGQRaWJCQnKMqMfP5i6lSHSmFI0hOTB3typ2Jk6VDfUWD+ZkZbF0wCBftHfUX5NtzNuwYknGE28hk7JpDAdd/Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Anton\\Documents\\3Match\\3Match.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Anton\\.nuget\\packages\\godot.sourcegenerators\\4.1.3\\godot.sourcegenerators.4.1.3.nupkg.sha512",
+    "C:\\Users\\Anton\\.nuget\\packages\\godotsharp\\4.1.3\\godotsharp.4.1.3.nupkg.sha512",
+    "C:\\Users\\Anton\\.nuget\\packages\\godotsharpeditor\\4.1.3\\godotsharpeditor.4.1.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2etiurf0ggr4"]
+
+[ext_resource type="Script" path="res://Scripts/Element/BonusElement/BonusElement.cs" id="1_wj5r2"]
+[ext_resource type="Texture2D" uid="uid://ddrb2e4o8tw2d" path="res://Sprites/GameBoardContent/LineBonus.png" id="2_raqy1"]
+
+[node name="horizontalBonusLine" type="Node2D"]
+script = ExtResource("1_wj5r2")
+_typeContent = 6
+_speed = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_raqy1")

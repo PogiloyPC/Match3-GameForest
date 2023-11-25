@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkl45j8witf0"]
+
+[ext_resource type="Script" path="res://Scripts/Grid/Grid.cs" id="1_284qp"]
+[ext_resource type="Script" path="res://Scripts/SpawnerGameBoardContent/ConfigGameBoardContent/ConfigGameBoardContent.cs" id="2_566xy"]
+[ext_resource type="Script" path="res://Scripts/SpawnerGameBoardContent/SpawnerGameBoardContent.cs" id="3_cby2l"]
+[ext_resource type="PackedScene" uid="uid://bruy0jw3fowkb" path="res://Prefab/ParticlePrefab/particle_explosion.tscn" id="4_y7fvk"]
+
+[sub_resource type="Resource" id="Resource_ilmn4"]
+script = ExtResource("2_566xy")
+_moneyPath = "res://Prefab/Money.tscn"
+_moonPath = "res://Prefab/Moon.tscn"
+_rectanglePath = "res://Prefab/Rectangle.tscn"
+_rhombusPath = "res://Prefab/Rhombus.tscn"
+_starPath = "res://Prefab/Star.tscn"
+_emptyPath = "res://Prefab/EmptyElement.tscn"
+_bonusBombPath = "res://Prefab/bomb_bonus_element.tscn"
+_bonusHorizontalLinePath = "res://Prefab/bonus_horizontal_line.tscn"
+_bonusVerticalLinePath = "res://Prefab/verical_bonus_line.tscn"
+_destroyerPath = "res://Prefab/destroyer.tscn"
+
+[sub_resource type="Resource" id="Resource_1mwuf"]
+script = ExtResource("3_cby2l")
+_configContent = SubResource("Resource_ilmn4")
+
+[node name="GameBoard" type="Node2D"]
+script = ExtResource("1_284qp")
+_spawner = SubResource("Resource_1mwuf")
+_prefabExplosion = ExtResource("4_y7fvk")
+_cellPath = "res://CellBoard.tscn"

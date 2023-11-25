@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://br3md0rpfmj7f"]
+
+[ext_resource type="Script" path="res://Scripts/Element/Element.cs" id="2_hgjvv"]
+[ext_resource type="Texture2D" uid="uid://dg1tofx2qgff8" path="res://Sprites/GameBoardContent/moon48X48.png" id="2_p5bx5"]
+
+[node name="Moon" type="Node2D"]
+z_index = 1
+script = ExtResource("2_hgjvv")
+_typeContent = 4
+_color = Color(0.960784, 0.929412, 0.639216, 1)
+_speed = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_p5bx5")
