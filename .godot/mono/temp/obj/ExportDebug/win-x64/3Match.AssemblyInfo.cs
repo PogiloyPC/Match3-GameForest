@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("3Match")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("ExportDebug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c7a4c01a6a30f74b6d8617f52a261391f914091")]
 [assembly: System.Reflection.AssemblyProductAttribute("3Match")]
 [assembly: System.Reflection.AssemblyTitleAttribute("3Match")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

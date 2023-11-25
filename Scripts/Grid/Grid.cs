@@ -41,7 +41,7 @@ public partial class Grid : Node2D
         _sizePixel = sizePixel;
 
         _elementsBoard = new ElementGameBoard[_sizeBoard.X, _sizeBoard.Y];
-        
+
         await Task.Delay(200);
 
         for (int x = 0; x < _sizeBoard.X; x++)
@@ -61,7 +61,7 @@ public partial class Grid : Node2D
                     AddChild(element);
                     element.LaunchGameContent(position);
                     element.PlaySpawnAnimation();
-                    
+
                     _elementsBoard[x, y] = element;
                 }
             }
@@ -194,11 +194,10 @@ public partial class Grid : Node2D
             for (int y = _sizeBoard.Y - 1; y >= 0; y--)
             {
                 if (_elementsBoard[y, x].GetTypeContent() != TypeGameBoardContent.emty)
-                        putDown.Add(PutDownElements(_elementsBoard[y, x]));
+                    putDown.Add(PutDownElements(_elementsBoard[y, x]));
             }
 
             await Task.WhenAll(putDown);
-                //Task.Delay(100);
         }
 
         DelateEmpteElements();
@@ -253,24 +252,33 @@ public partial class Grid : Node2D
             {
                 if (_elementsBoard[y, x].GetTypeContent() == TypeGameBoardContent.emty)
                 {
-                    ElementGameBoard emptyElement = _elementsBoard[y, x];
+                    ElementGameBoard emptyElement = _elementsBoard[y, x];                                          
                     ElementGameBoard newElement = _spawner.SpawnGameContent();
                     AddChild(newElement);
 
                     Vector2I launchPosition = emptyElement.GetCordinatInGrid() * _sizePixel;
                     Vector2I cordPosition = emptyElement.GetCordinatInGrid();
 
+                    if (emptyElement == null)
+                    {
+                        launchPosition = new Vector2I(y, x) * _sizePixel; 
+                        cordPosition = new Vector2I(y, x);
+                    }
+                    else
+                    {
+                        launchPosition = emptyElement.GetCordinatInGrid() * _sizePixel;
+                        cordPosition = emptyElement.GetCordinatInGrid();
+                        
+                        emptyElement.DestroyElement();
+                    }
+
                     newElement.LaunchGameContent(launchPosition);
                     newElement.PlaySpawnAnimation();
 
                     _elementsBoard[cordPosition.Y, cordPosition.X] = newElement;
-
-                    emptyElement.DestroyElement();
                 }
             }
         }
-
-        //await Task.Delay(100);
 
         FindAllElementsMatch();
     }
@@ -311,7 +319,7 @@ public partial class Grid : Node2D
                 continue;
             }
 
-            ReplaceMatchingElement(matchElement);            
+            ReplaceMatchingElement(matchElement);
         }
 
         matchElements.ShowMatchingElements();
@@ -324,7 +332,7 @@ public partial class Grid : Node2D
 
     private void ReplaceMatchingElement(ElementGameBoard matchElement)
     {
-        _takeReward.Invoke(matchElement);        
+        _takeReward.Invoke(matchElement);
 
         MakeEmptyElement(matchElement);
     }
@@ -390,7 +398,7 @@ public partial class Grid : Node2D
             _timer.SetPlay();
 
             _secondSwapElement.SelectElement();
-            
+
             IsTouchable = false;
         }
         else
@@ -470,14 +478,18 @@ public partial class Grid : Node2D
     {
         ElementGameBoard startMatchElement = match.GetStartElement();
 
+        BonusElement bonusElement = (BonusElement)_spawner.SpawnBonus(typeBonus);
+
         Vector2I position = startMatchElement.GetCordinatInGrid() * _sizePixel;
 
-        BonusElement bonusElement = (BonusElement)_spawner.SpawnBonus(typeBonus);
-        AddChild(bonusElement);
-        bonusElement.LaunchGameContent(position);
-
         if (bonusElement != null)
+        {
+            AddChild(bonusElement);
+
+            bonusElement.LaunchGameContent(position);
+
             await LoadBonusInGrid(match, bonusElement, startMatchElement);
+        }
     }
 
     private async Task LoadBonusInGrid(MatchElements match, BonusElement bonusElement, ElementGameBoard startElement)
@@ -541,10 +553,10 @@ public partial class Grid : Node2D
             line = HandlerMatrix<ElementGameBoard>.GetListColumn(_elementsBoard, cordinatBonus.X);
 
         Destroyer rightDestroyer = LoadDestroyer(cordinatBonus);
-        Destroyer leftDestroyer = LoadDestroyer(cordinatBonus);       
+        Destroyer leftDestroyer = LoadDestroyer(cordinatBonus);
 
         for (int i = 0; i < line.Count; i++)
-        {                       
+        {
             if (line[i] is BonusElement bonus)
             {
                 CheckBonusElement(line, bonus);
@@ -560,7 +572,7 @@ public partial class Grid : Node2D
         HandleDestroyer(rightDestroyer, line, element.GetTypeBonus(), true, 1);
         HandleDestroyer(leftDestroyer, line, element.GetTypeBonus(), false, -1);
 
-        await Task.Delay(100 * line.Count);        
+        await Task.Delay(100 * line.Count);
     }
 
     private async Task PlayBombBonus(BonusElement element)
@@ -587,9 +599,9 @@ public partial class Grid : Node2D
                 continue;
             }
 
-            ReplaceMatchingElement(matrix3x3[i]);                    
+            ReplaceMatchingElement(matrix3x3[i]);
         }
-        
+
         await ClearMatrix(matrix3x3);
     }
 
@@ -600,15 +612,15 @@ public partial class Grid : Node2D
         if (type == TypeBonusElement.horizontalLine)
             startElement = Mathf.RoundToInt(destroyer.Position.X) / _sizePixel;
         else
-            startElement = Mathf.RoundToInt(destroyer.Position.Y) / _sizePixel;       
+            startElement = Mathf.RoundToInt(destroyer.Position.Y) / _sizePixel;
 
         for (int i = startElement += direction; i < elements.Count && i >= 0; i += direction)
         {
             if (elements[i] != null)
             {
-                destroyer.MoveNextPosition(elements[i].GetCordinatInGrid() * _sizePixel, isRight);            
+                destroyer.MoveNextPosition(elements[i].GetCordinatInGrid() * _sizePixel, isRight);
 
-                await Task.Delay(100);            
+                await Task.Delay(100);
 
                 elements[i].DestroyElement();
             }
@@ -623,7 +635,7 @@ public partial class Grid : Node2D
         {
             elements.Remove(bonus);
 
-            _bonusElements.Enqueue(bonus);            
+            _bonusElements.Enqueue(bonus);
         }
         else
         {
@@ -631,11 +643,14 @@ public partial class Grid : Node2D
             {
                 if (bonus != elements[i])
                 {
-                    elements.Remove(bonus);
+                    if (bonus != null)
+                    {
+                        elements.Remove(bonus);
 
-                    _bonusElements.Enqueue(bonus);
+                        _bonusElements.Enqueue(bonus);
+                    }
                 }
-            }            
+            }
         }
     }
 
@@ -644,10 +659,10 @@ public partial class Grid : Node2D
         await Task.Delay(250);
 
         for (int i = 0; i < elements.Count; i++)
-        {                       
+        {
             elements[i].DestroyElement();
         }
-    }   
+    }
     #endregion
 
     #region AddiotionalMethods
@@ -657,11 +672,15 @@ public partial class Grid : Node2D
         Vector2I positionNewElement = element.GetCordinatInGrid() * _sizePixel;
 
         ElementGameBoard emptyElement = _spawner.SpawnEmptyElement();
-        AddChild(emptyElement);
 
-        emptyElement.LaunchGameContent(positionNewElement);
+        if (emptyElement != null)
+        {
+            AddChild(emptyElement);
 
-        _elementsBoard[cordinatNewElement.Y, cordinatNewElement.X] = emptyElement;
+            emptyElement.LaunchGameContent(positionNewElement);
+
+            _elementsBoard[cordinatNewElement.Y, cordinatNewElement.X] = emptyElement;
+        }
     }
 
     private void SetExplosionParticles(ElementGameBoard element)
